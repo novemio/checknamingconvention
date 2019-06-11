@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
+
+	<string name="app_name">Swandoo</string>
+	<string name="txt_swandoo">Swandoo</string>
+	<string name="swandoo_url"><u>www.swandoo.com</u></string>
+
+
+</resources>

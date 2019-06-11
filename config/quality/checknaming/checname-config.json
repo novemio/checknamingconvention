@@ -1,0 +1,53 @@
+{
+
+  "severity": "WARNING",
+
+  "LayoutNaming": {
+    "prefixes": [
+      "activity_",
+      "fragment_",
+      "dialog_",
+      "item_",
+      "partial_",
+      "toolbar_",
+      "view_"
+    ]
+  },
+
+
+  "DrawableNaming": {
+    "prefixes": [
+      "ab_",
+      "btn_",
+      "dialog_",
+      "divider_",
+      "circle_",
+      "toolbar_",
+      "selector_",
+      "progress_",
+      "bg_",
+      "ic_",
+      "menu_",
+      "notification_",
+      "tab_",
+      "icon_"
+    ]
+  },
+
+  "StringNaming": {
+
+    "camelCaseEnabled":false,
+
+    "notStartWith": [
+      "txt",
+      "desc"
+    ],
+    "doNotContain":[
+      ".",
+      "text"
+    ]
+  }
+
+
+
+}

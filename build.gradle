@@ -1,0 +1,147 @@
+buildscript {
+
+    ext.kotlin_version = '1.3.31'
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven {
+            url 'http://oss.sonatype.org/content/repositories/snapshots'
+        }
+        maven {
+            url 'https://www.jitpack.io'
+        }
+
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+plugins {
+//    id 'java'
+    id 'maven'
+    id 'maven-publish'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.31'
+    id 'com.gradle.build-scan' version '2.3'
+    id 'com.gradle.plugin-publish' version "0.10.0"
+}
+
+
+apply plugin: 'kotlin-kapt'
+
+
+sourceCompatibility = 1.8
+
+
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://www.jitpack.io'
+    }
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+    implementation "com.squareup.moshi:moshi:1.8.0"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.31"
+
+
+
+    // https://mvnrepository.com/artifact/com.tickaroo.tikxml/core
+    implementation 'com.github.Tickaroo.tikxml:annotation:0.8.15'
+    implementation 'com.github.Tickaroo.tikxml:core:0.8.15'
+    kapt 'com.github.Tickaroo.tikxml:processor-common:0.8.15'
+    kapt 'com.github.Tickaroo.tikxml:processor:0.8.15'
+//
+
+
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.6.0'
+//    implementation "com.squareup.okhttp3:okhttp:"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+
+
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+
+group 'com.novemio.gradle'
+version '0.1.0'
+
+
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'maven-publish'
+
+gradlePlugin {
+    plugins {
+        create("checkNamingConvention") {
+            id = "com.novemio.gradle.checknamingconvention"
+            displayName = "checkNamingConvention"
+            description = "Naming Convention Checker"
+            implementationClass = "com.novemio.namingcheck.NamingConventionPlugin"
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().url)
+        }
+    }
+}
+
+
+buildScan {
+    setTermsOfServiceUrl("https://gradle.com/terms-of-service")
+    setTermsOfServiceAgree("yes")
+    publishOnFailure()
+}
+
+ext {
+    bintrayRepo = 'CheckNamingConvention'
+    bintrayName = 'checknamingconvention'
+    bintrayUserOrg = 'novemio'
+    publishedGroupId = group
+    libraryName = 'checknamingconvention'
+    artifact = 'checknamingconvention'
+
+    libraryDescription = 'Check naming convention '
+
+    siteUrl = 'https://github.com/novemio/checknamingconvention'
+    gitUrl =  'https://github.com/novemio/checknamingconvention.git'
+
+    libraryVersion = version
+
+    developerId = 'novemio'
+    developerName = 'Sekulic Milan '
+    developerEmail = 'work.milansekulic@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: 'publish.gradle'
+
+
+
+
+
+
