@@ -10,7 +10,7 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.TaskAction
 
-open class CheckConventionTask : DefaultTask() {
+open class CheckNamingConvention : DefaultTask() {
 
     var configFile: String? = null
     var resourcePath: String? = null

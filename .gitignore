@@ -61,3 +61,5 @@ ultrable/src/main/res/drawable/
 hs_err*.log
 
 /projectFilesBackup1/.idea/
+
+/out/

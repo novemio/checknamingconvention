@@ -9,7 +9,7 @@ buildscript {
     dependencies {
         classpath group: 'com.novemio.gradle',    // Defined in the build.gradle of the plugin
                 name: 'checknamingconvention',       // Defined by the rootProject.name
-                version: '1.1.0'
+                version: '0.1.0'
     }
 
 }

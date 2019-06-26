@@ -1,7 +1,6 @@
 package com.novemio.namingcheck
 
-import com.novemio.namingcheck.convention.ConventionName
-import com.novemio.namingcheck.task.CheckConventionTask
+import com.novemio.namingcheck.task.CheckNamingConvention
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -10,9 +9,9 @@ open class NamingConventionPlugin : Plugin<Project> {
 
 
     override fun apply(project: Project) {
-        val task = project.tasks.create<CheckConventionTask>(
+        val task = project.tasks.create<CheckNamingConvention>(
             "checkNamingConvention",
-            CheckConventionTask::class.java
+            CheckNamingConvention::class.java
         ) { task ->
             task.resourcePath = "${project.projectDir.absolutePath}/src/main/res/"
         }
