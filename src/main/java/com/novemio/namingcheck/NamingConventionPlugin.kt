@@ -12,8 +12,9 @@ open class NamingConventionPlugin : Plugin<Project> {
         val task = project.tasks.create<CheckNamingConvention>(
             "checkNamingConvention",
             CheckNamingConvention::class.java
-        ) { task ->
-            task.resourcePath = "${project.projectDir.absolutePath}/src/main/res/"
+        ).apply {
+            resourcePath = "${project.projectDir.absolutePath}/src/main/res/"
+
         }
 
 

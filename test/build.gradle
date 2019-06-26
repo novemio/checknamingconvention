@@ -7,9 +7,9 @@ buildscript {
     }
 
     dependencies {
-        classpath group: 'com.novemio.gradle',    // Defined in the build.gradle of the plugin
+        classpath group: 'com.novemio',    // Defined in the build.gradle of the plugin
                 name: 'checknamingconvention',       // Defined by the rootProject.name
-                version: '0.1.0'
+                version: '0.1.2'
     }
 
 }
@@ -18,7 +18,6 @@ buildscript {
 
 
 plugins {
-//    id 'java'
     id 'org.jetbrains.kotlin.jvm'
 }
 

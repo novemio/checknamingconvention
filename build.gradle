@@ -1,6 +1,6 @@
 buildscript {
 
-    ext.kotlin_version = '1.3.31'
+    ext.kotlin_version = '1.3.40'
     repositories {
         google()
         jcenter()
@@ -11,6 +11,10 @@ buildscript {
         maven {
             url 'https://www.jitpack.io'
         }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven { url 'https://maven.fabric.io/public' }
 
     }
     dependencies {
@@ -26,7 +30,7 @@ plugins {
 //    id 'java'
     id 'maven'
     id 'maven-publish'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.31'
+    id "org.gradle.kotlin.kotlin-dsl" version "1.2.6"
     id 'com.gradle.build-scan' version '2.3'
     id 'com.gradle.plugin-publish' version "0.10.0"
 }
@@ -54,8 +58,6 @@ dependencies {
     implementation "com.squareup.moshi:moshi:1.8.0"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.31"
 
-
-
     // https://mvnrepository.com/artifact/com.tickaroo.tikxml/core
     implementation 'com.github.Tickaroo.tikxml:annotation:0.8.15'
     implementation 'com.github.Tickaroo.tikxml:core:0.8.15'
@@ -81,23 +83,56 @@ compileTestKotlin {
 }
 
 
-group 'com.novemio.gradle'
-version '0.1.0'
-
-
 apply plugin: 'java-gradle-plugin'
 apply plugin: 'maven-publish'
 
+//group 'com.novemio'
+//version '0.1.1'
+
+def libGroup = 'com.novemio'
+def libVersion = '0.1.2'
 gradlePlugin {
     plugins {
-        create("checkNamingConvention") {
-            id = "com.novemio.gradle.checknamingconvention"
-            displayName = "checkNamingConvention"
-            description = "Naming Convention Checker"
+        checkNamingConvention {
+            id = "com.novemio.checknamingconvention"
             implementationClass = "com.novemio.namingcheck.NamingConventionPlugin"
+
         }
     }
 }
+
+pluginBundle {
+    website = "https://github.com/novemio/checknamingconvention"
+    vcsUrl = "https://github.com/novemio/checknamingconvention"
+    tags = ["check", "naming convention", "convention", "naming"]
+
+    plugins {
+
+        checkNamingConvention {
+            displayName = "checkNamingConvention"
+            description = "Naming Convention Checker"
+            displayName = 'Gradle Greeting plugin'
+            version = libVersion
+        }
+    }
+   
+    mavenCoordinates {
+        groupId = "com.novemio"
+        artifactId = "checknamingconventions"
+    }
+}
+
+
+publishing {
+    repositories {
+        maven {
+            url = "file://${buildDir}/repo"
+        }
+    }
+}
+
+
+
 
 uploadArchives {
     repositories {
@@ -106,6 +141,8 @@ uploadArchives {
         }
     }
 }
+
+
 
 
 buildScan {
@@ -118,16 +155,16 @@ ext {
     bintrayRepo = 'CheckNamingConvention'
     bintrayName = 'checknamingconvention'
     bintrayUserOrg = 'novemio'
-    publishedGroupId = group
+    publishedGroupId = libGroup
     libraryName = 'checknamingconvention'
     artifact = 'checknamingconvention'
 
     libraryDescription = 'Check naming convention '
 
     siteUrl = 'https://github.com/novemio/checknamingconvention'
-    gitUrl =  'https://github.com/novemio/checknamingconvention.git'
+    gitUrl = 'https://github.com/novemio/checknamingconvention.git'
 
-    libraryVersion = version
+    libraryVersion = libVersion
 
     developerId = 'novemio'
     developerName = 'Sekulic Milan '
