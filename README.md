@@ -10,7 +10,7 @@ buildscript {
     }
   }
   dependencies {
-	classpath 'com.novemio.gradle:checknamingconvention:0.1.0'
+	classpath 'com.novemio.gradle:checknamingconvention:0.1.1'
   }
 }
 
